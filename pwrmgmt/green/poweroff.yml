@@ -1,0 +1,42 @@
+---
+- name: Shutdown configured PCs in pc_pool
+  hosts: pc_pool
+  strategy: free
+  become: yes
+  gather_facts: no
+  ignore_unreachable: yes
+
+  tasks:
+    - name: Send shutdown command to configured hosts
+      shell: shutdown -h now
+      async: 1
+      poll: 0
+      ignore_errors: yes
+      when: mac is defined
+
+    - name: Confirm shutdown signal sent
+      debug:
+        msg: "Shutdown initiated for {{ inventory_hostname }} (MAC: {{ mac }})"
+      when: mac is defined
+
+
+- name: Shutdown Windows hosts in windows_pool via Scheduled Task
+  hosts: windows_pool
+  gather_facts: no
+  ignore_unreachable: yes
+
+  tasks:
+    - name: Create a one-time immediate shutdown task as SYSTEM
+      ansible.builtin.raw: >
+        schtasks /create /tn "AnsibleInstantShutdown" 
+        /tr "shutdown.exe /s /f /t 0" 
+        /sc ONCE /st 00:00 /ru "NT AUTHORITY\SYSTEM" /f
+      ignore_errors: yes
+
+    - name: Run the task immediately
+      ansible.builtin.raw: schtasks /run /tn "AnsibleInstantShutdown"
+      ignore_errors: yes
+
+    - name: Confirm shutdown signal triggered
+      debug:
+        msg: "Shutdown task scheduled and run for {{ inventory_hostname }}"

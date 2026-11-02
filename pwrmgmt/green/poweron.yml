@@ -1,0 +1,16 @@
+- name: Send Wake-on-LAN packets to configured PCs
+  hosts: localhost
+  gather_facts: no
+  vars:
+    broadcast_ip: "192.168.0.255"
+
+  tasks:
+    - name: Send WOL broadcast only for hosts with defined MAC
+      command: "wakeonlan -i {{ broadcast_ip }} {{ hostvars[item]['mac'] }}"
+      loop: "{{ query('inventory_hostnames', 'pc_pool,windows_pool') }}"
+      when: hostvars[item]['mac'] is defined
+      changed_when: false
+
+    - name: Display completion notice
+      debug:
+        msg: "WOL broadcast sequence completed for configured hosts."

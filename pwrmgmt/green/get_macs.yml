@@ -1,0 +1,32 @@
+---
+- name: Collect and display IP and MAC addresses for PC pool
+  hosts: pc_pool
+  gather_facts: yes
+  tasks:
+    - name: Detect network interface corresponding to management IP
+      shell: |
+        ip -o addr show | grep '{{ ansible_default_ipv4.address }}' | awk '{print $2}'
+      register: target_interface
+      changed_when: false
+
+    - name: Fail if target interface could not be determined
+      fail:
+        msg: "Could not automatically determine the network interface for IP {{ ansible_default_ipv4.address }}"
+      when: target_interface.stdout | trim == ""
+
+    - name: Set interface fact
+      set_fact:
+        wol_interface: "{{ target_interface.stdout | trim }}"
+
+    - name: Get MAC address of the target interface
+      slurp:
+        src: "/sys/class/net/{{ wol_interface }}/address"
+      register: mac_file
+
+    - name: Extract MAC address
+      set_fact:
+        host_mac: "{{ mac_file['content'] | b64decode | trim }}"
+
+    - name: Display IP and MAC in clean format
+      debug:
+        msg: "{{ ansible_default_ipv4.address }} ---> {{ host_mac }}"

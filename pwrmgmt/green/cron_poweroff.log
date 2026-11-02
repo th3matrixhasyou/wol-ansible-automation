@@ -1,0 +1,173 @@
+========================================
+=== Запуск: 2026-08-07 18:00:01 ===
+========================================
+
+PLAY [Shutdown configured PCs in pc_pool] **************************************
+[WARNING]: Host '192.168.0.217' is using the discovered Python interpreter at '/usr/bin/python3.10', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.[cite: 2]
+[WARNING]: Host '192.168.0.220' is using the discovered Python interpreter at '/usr/bin/python3.10', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.[cite: 2]
+[WARNING]: Host '192.168.0.222' is using the discovered Python interpreter at '/usr/local/bin/python3.11', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.[cite: 2]
+[WARNING]: Host '192.168.0.218' is using the discovered Python interpreter at '/usr/bin/python3.10', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.[cite: 2]
+[WARNING]: Host '192.168.0.226' is using the discovered Python interpreter at '/usr/bin/python3.12', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.[cite: 2]
+[WARNING]: Host '192.168.0.227' is using the discovered Python interpreter at '/usr/bin/python3.9', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.[cite: 2]
+[WARNING]: Host '192.168.0.224' is using the discovered Python interpreter at '/usr/bin/python3.10', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.[cite: 2]
+[WARNING]: Host '192.168.0.231' is using the discovered Python interpreter at '/usr/bin/python3.9', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.[cite: 2]
+[WARNING]: Host '192.168.0.230' is using the discovered Python interpreter at '/usr/bin/python3.10', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.[cite: 2]
+[WARNING]: Host '192.168.0.235' is using the discovered Python interpreter at '/usr/bin/python3.10', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.[cite: 2]
+[WARNING]: Host '192.168.0.239' is using the discovered Python interpreter at '/usr/bin/python3.10', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.[cite: 2]
+[WARNING]: Host '192.168.0.237' is using the discovered Python interpreter at '/usr/bin/python3.10', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.[cite: 2]
+[WARNING]: Host '192.168.0.241' is using the discovered Python interpreter at '/usr/bin/python3.10', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.[cite: 2]
+
+TASK [Send shutdown command to configured hosts] *******************************
+changed: [192.168.0.216][cite: 2]
+changed: [192.168.0.217][cite: 2]
+changed: [192.168.0.220][cite: 2]
+changed: [192.168.0.222][cite: 2]
+skipping: [192.168.0.229][cite: 2]
+changed: [192.168.0.218][cite: 2]
+changed: [192.168.0.226][cite: 2]
+changed: [192.168.0.227][cite: 2]
+changed: [192.168.0.224][cite: 2]
+changed: [192.168.0.231][cite: 2]
+skipping: [192.168.0.236][cite: 2]
+changed: [192.168.0.232][cite: 2]
+changed: [192.168.0.235][cite: 2]
+changed: [192.168.0.230][cite: 2]
+changed: [192.168.0.239][cite: 2]
+changed: [192.168.0.237][cite: 2]
+changed: [192.168.0.241][cite: 2]
+[WARNING]: Host '192.168.0.246' is using the discovered Python interpreter at '/usr/bin/python3.10', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.[cite: 2]
+[WARNING]: Host '192.168.0.244' is using the discovered Python interpreter at '/usr/bin/python3.10', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.[cite: 2]
+[WARNING]: Host '192.168.0.248' is using the discovered Python interpreter at '/usr/bin/python3.10', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.[cite: 2]
+changed: [192.168.0.246][cite: 2]
+
+TASK [Confirm shutdown signal sent] ********************************************
+ok: [192.168.0.216] => {[cite: 2]
+    "msg": "Shutdown initiated for 192.168.0.216 (MAC: d8:5e:d3:53:39:17)"[cite: 2]
+}
+ok: [192.168.0.217] => {[cite: 2]
+    "msg": "Shutdown initiated for 192.168.0.217 (MAC: d8:5e:d3:53:39:00)"[cite: 2]
+}
+
+TASK [Send shutdown command to configured hosts] *******************************
+changed: [192.168.0.244][cite: 2]
+
+TASK [Confirm shutdown signal sent] ********************************************
+ok: [192.168.0.218] => {[cite: 2]
+    "msg": "Shutdown initiated for 192.168.0.218 (MAC: d8:5e:d3:53:3b:a0)"[cite: 2]
+}
+ok: [192.168.0.220] => {[cite: 2]
+    "msg": "Shutdown initiated for 192.168.0.220 (MAC: d8:5e:d3:53:34:ae)"[cite: 2]
+}
+ok: [192.168.0.222] => {[cite: 2]
+    "msg": "Shutdown initiated for 192.168.0.222 (MAC: d8:5e:d3:a1:c8:ef)"[cite: 2]
+}
+ok: [192.168.0.224] => {[cite: 2]
+    "msg": "Shutdown initiated for 192.168.0.224 (MAC: d8:5e:d3:55:61:a1)"[cite: 2]
+}
+ok: [192.168.0.226] => {[cite: 2]
+    "msg": "Shutdown initiated for 192.168.0.226 (MAC: d8:5e:d3:5e:85:86)"[cite: 2]
+}
+skipping: [192.168.0.229][cite: 2]
+ok: [192.168.0.227] => {[cite: 2]
+    "msg": "Shutdown initiated for 192.168.0.227 (MAC: d8:5e:d3:55:61:8d)"[cite: 2]
+}
+
+TASK [Send shutdown command to configured hosts] *******************************
+changed: [192.168.0.248][cite: 2]
+
+TASK [Confirm shutdown signal sent] ********************************************
+ok: [192.168.0.230] => {[cite: 2]
+    "msg": "Shutdown initiated for 192.168.0.230 (MAC: f0:2f:74:97:cf:a8)"[cite: 2]
+}
+ok: [192.168.0.231] => {[cite: 2]
+    "msg": "Shutdown initiated for 192.168.0.231 (MAC: b4:2e:99:d5:a8:88)"[cite: 2]
+}
+ok: [192.168.0.232] => {[cite: 2]
+    "msg": "Shutdown initiated for 192.168.0.232 (MAC: b4:2e:99:d5:a8:8a)"[cite: 2]
+}
+skipping: [192.168.0.236][cite: 2]
+ok: [192.168.0.235] => {[cite: 2]
+    "msg": "Shutdown initiated for 192.168.0.235 (MAC: d8:5e:d3:88:40:94)"[cite: 2]
+}
+[WARNING]: Host '192.168.0.249' is using the discovered Python interpreter at '/usr/bin/python3.10', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.[cite: 2]
+ok: [192.168.0.237] => {[cite: 2]
+    "msg": "Shutdown initiated for 192.168.0.237 (MAC: d8:5e:d3:89:be:74)"[cite: 2]
+}
+ok: [192.168.0.239] => {[cite: 2]
+    "msg": "Shutdown initiated for 192.168.0.239 (MAC: d8:5e:d3:88:40:7f)"[cite: 2]
+}
+ok: [192.168.0.241] => {[cite: 2]
+    "msg": "Shutdown initiated for 192.168.0.241 (MAC: d8:5e:d3:8a:92:2f)"[cite: 2]
+}
+ok: [192.168.0.244] => {[cite: 2]
+    "msg": "Shutdown initiated for 192.168.0.244 (MAC: d8:5e:d3:8a:94:75)"[cite: 2]
+}
+ok: [192.168.0.246] => {[cite: 2]
+    "msg": "Shutdown initiated for 192.168.0.246 (MAC: d8:5e:d3:53:38:e6)"[cite: 2]
+}
+ok: [192.168.0.248] => {[cite: 2]
+    "msg": "Shutdown initiated for 192.168.0.248 (MAC: d8:5e:d3:53:39:de)"[cite: 2]
+}
+
+TASK [Send shutdown command to configured hosts] *******************************
+changed: [192.168.0.249][cite: 2]
+
+TASK [Confirm shutdown signal sent] ********************************************
+ok: [192.168.0.249] => {[cite: 2]
+    "msg": "Shutdown initiated for 192.168.0.249 (MAC: d8:5e:d3:53:33:fc)"[cite: 2]
+}
+
+TASK [Send shutdown command to configured hosts] *******************************
+[ERROR]: Task failed: Failed to connect to the host via ssh: ssh: connect to host 192.168.0.247 port 22: No route to host[cite: 2]
+Origin: /home/neo/ansible/pwrmgmt/green/poweroff.yml:10:7[cite: 2]
+
+ 8
+ 9   tasks:
+10     - name: Send shutdown command to configured hosts
+         ^ column 7
+
+fatal: [192.168.0.247]: UNREACHABLE! => {"changed": false, "msg": "Task failed: Failed to connect to the host via ssh: ssh: connect to host 192.168.0.247 port 22: No route to host", "unreachable": true}[cite: 2]
+...ignoring
+
+TASK [Confirm shutdown signal sent] ********************************************
+ok: [192.168.0.247] => {[cite: 2]
+    "msg": "Shutdown initiated for 192.168.0.247 (MAC: d8:5e:d3:56:1e:be)"[cite: 2]
+}
+
+PLAY [Shutdown Windows hosts in windows_pool via Scheduled Task] ***************
+
+TASK [Create a one-time immediate shutdown task as SYSTEM] *********************
+changed: [10.199.138.62]
+
+TASK [Run the task immediately] ************************************************
+changed: [10.199.138.62]
+
+TASK [Confirm shutdown signal triggered] ***************************************
+ok: [10.199.138.62] => {
+    "msg": "Shutdown task scheduled and run for 10.199.138.62"
+}
+
+PLAY RECAP *********************************************************************
+10.199.138.62              : ok=3    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+192.168.0.216              : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0[cite: 2]  
+192.168.0.217              : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0[cite: 2]  
+192.168.0.218              : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0[cite: 2]  
+192.168.0.220              : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0[cite: 2]  
+192.168.0.222              : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0[cite: 2]  
+192.168.0.224              : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0[cite: 2]  
+192.168.0.226              : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0[cite: 2]  
+192.168.0.227              : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0[cite: 2]  
+192.168.0.229              : ok=0    changed=0    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0[cite: 2]  
+192.168.0.230              : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0[cite: 2]  
+192.168.0.231              : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0[cite: 2]  
+192.168.0.232              : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0[cite: 2]  
+192.168.0.235              : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0[cite: 2]  
+192.168.0.236              : ok=0    changed=0    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0[cite: 2]  
+192.168.0.237              : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0[cite: 2]  
+192.168.0.239              : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0[cite: 2]  
+192.168.0.241              : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0[cite: 2]  
+192.168.0.244              : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0[cite: 2]  
+192.168.0.246              : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0[cite: 2]  
+192.168.0.247              : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=1[cite: 2]  
+192.168.0.248              : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0[cite: 2]  
+192.168.0.249              : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0[cite: 2]

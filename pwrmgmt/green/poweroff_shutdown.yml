@@ -1,0 +1,35 @@
+---
+- name: Shutdown configured PCs in pc_pool
+  hosts: pc_pool
+  strategy: free
+  become: yes
+  gather_facts: no
+  ignore_unreachable: yes
+
+  tasks:
+    - name: Send shutdown command to configured hosts
+      shell: shutdown -h now
+      async: 1
+      poll: 0
+      ignore_errors: yes
+      when: mac is defined
+
+    - name: Confirm shutdown signal sent
+      debug:
+        msg: "Shutdown initiated for {{ inventory_hostname }} (MAC: {{ mac }})"
+      when: mac is defined
+
+
+- name: Shutdown Windows hosts in windows_pool
+  hosts: windows_pool
+  gather_facts: no
+  ignore_unreachable: yes
+
+  tasks:
+    - name: Send hard shutdown command to Windows hosts via raw
+      ansible.builtin.raw: shutdown.exe /s /f /t 0
+      ignore_errors: yes
+
+    - name: Confirm Windows shutdown signal sent
+      debug:
+        msg: "Hard shutdown initiated for Windows host {{ inventory_hostname }}"

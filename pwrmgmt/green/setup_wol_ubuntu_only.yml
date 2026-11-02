@@ -1,0 +1,95 @@
+---
+- name: Configure Wake-on-LAN via systemd service on Ubuntu
+  hosts: pc_pool
+  become: yes
+  tasks:
+    - name: Ensure the OS is Ubuntu 18-26
+      assert:
+        that:
+          - ansible_distribution == "Ubuntu"
+          - ansible_distribution_version is version('18.04', '>=')
+          - ansible_distribution_version is version('27.00', '<')
+        fail_msg: "This playbook only supports Ubuntu versions 18.04 through 26.x. Current OS: {{ ansible_distribution }} {{ ansible_distribution_version }}"
+
+    - name: Ensure ethtool is installed (bypassing broken cache update)
+      command: apt-get install -y ethtool
+      register: apt_result
+      changed_when: "'0 newly installed' not in apt_result.stdout"
+
+    - name: Detect network interface corresponding to management IP
+      shell: |
+        ip -o addr show | grep '{{ ansible_default_ipv4.address }}' | awk '{print $2}'
+      register: target_interface
+      changed_when: false
+
+    - name: Fail if target interface could not be determined
+      fail:
+        msg: "Could not automatically determine the network interface for IP {{ ansible_default_ipv4.address }}"
+      when: target_interface.stdout | trim == ""
+
+    - name: Set interface fact for subsequent tasks
+      set_fact:
+        wol_interface: "{{ target_interface.stdout | trim }}"
+
+    - name: Display detected interface
+      debug:
+        msg: "Target management IP {{ ansible_default_ipv4.address }} is bound to interface {{ wol_interface }}"
+
+    - name: Check if Wake-on-LAN is supported by hardware
+      command: ethtool {{ wol_interface }}
+      register: wol_check
+      changed_when: false
+      failed_when: >
+        wol_check.rc != 0 or 
+        (
+          'Supports Wake-on:' in wol_check.stdout and 
+          'g' not in (wol_check.stdout | regex_search('Supports Wake-on:.*', multiline=True))
+        )
+
+    - name: Create systemd service for Wake-on-LAN
+      copy:
+        dest: /etc/systemd/system/wol.service
+        content: |
+          [Unit]
+          Description=Enable Wake-on-LAN for {{ wol_interface }}
+          After=network.target
+
+          [Service]
+          Type=oneshot
+          ExecStart=/usr/sbin/ethtool -s {{ wol_interface }} wol g
+
+          [Install]
+          WantedBy=multi-user.target
+        owner: root
+        group: root
+        mode: '0644'
+      notify: Reload and enable wol service
+
+    - name: Verify Wake-on-LAN status
+      command: ethtool {{ wol_interface }}
+      register: ethtool_output
+      changed_when: false
+
+    - name: Enforce Wake-on-LAN configuration if not active
+      command: ethtool -s {{ wol_interface }} wol g
+      when: 
+        - "'Wake-on:' in ethtool_output.stdout"
+        - "'Wake-on: g' not in ethtool_output.stdout"
+      notify: Reload and enable wol service
+
+    - name: Show final Wake-on-LAN status details
+      command: ethtool {{ wol_interface }}
+      register: final_ethtool_output
+      changed_when: false
+
+    - name: Display real Wake-on status line
+      debug:
+        msg: "{{ final_ethtool_output.stdout_lines | select('match', '.*Wake-on:.*') | list }}"
+
+  handlers:
+    - name: Reload and enable wol service
+      systemd:
+        name: wol.service
+        daemon_reload: yes
+        enabled: yes
+        state: restarted

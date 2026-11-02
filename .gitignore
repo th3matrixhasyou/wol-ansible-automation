@@ -1,0 +1,16 @@
+# Ansible artifacts
+*.retry
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+venv/
+
+# Sensitive files / keys
+*.pem
+#id_rsa*
+*.vault
+vault_pass.txt

@@ -1,0 +1,10 @@
+---
+- name: Deploy SSH public key to target hosts
+  hosts: pc_pool
+  gather_facts: no
+  tasks:
+    - name: Set authorized key from local file
+      ansible.builtin.authorized_key:
+        user: "{{ ansible_user | default(lookup('env', 'USER')) }}"
+        state: present
+        key: "{{ lookup('file', 'id_rsa_project.pub') }}"
